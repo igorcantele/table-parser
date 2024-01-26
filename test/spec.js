@@ -132,4 +132,16 @@ describe('tabler-parser', function () {
       Assert.equal(/^\w+$/.test(ret.USER), true);
     });
   });
+
+  it('should parse correctly non aligned cols-rows', function() {
+    var output = GetOutput('irregular-format.log');
+    var result = TableParser.parse(output);
+    Assert.equal(result.length === 5, true);
+    result.forEach(function(elem) {
+      for (const value of Object.values(elem)) {
+        Assert.equal(value.length === 4, true)
+        Assert.equal(!!value, true)
+      }
+    });
+  });
 });
